@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Hydroponics Dashboard</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<nav id="sidebar">
+    <div class="side-ber-logo">
+        <div class="sidebar-logo"><i class="bi bi-diagram-3-fill"></i></div>
+    </div>
+    <div class="navigations">
+        <div class="sidebar-icon active" title="Dashboard"><i class="bi bi-grid-fill"></i></div>
+        <div class="sidebar-icon" title="Settings"><i class="bi bi-sliders"></i></div>
+        <div class="sidebar-icon" title="Analytics"><i class="bi bi-bar-chart-fill"></i></div>
+        <div class="sidebar-icon" title="Solar"><i class="fa-solid fa-solar-panel"></i></div>
+    </div>
+    <div class="power-logo">
+        <div class="sidebar-icon mt-auto" title="Solar"><i class="bi bi-lightning-charge-fill"></i></div>
+    </div>
+</nav>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="d-flex align-items-start justify-content-between mb-3">
+    <div>
+      <h1 class="dash-title">Smart Hydroponics Dashboard</h1>
+      <p class="dash-device mb-0"><i class="bi bi-cpu me-1"></i>Device : ESP-32-Module-1</p>
+    </div>
+    <div class="d-flex align-items-center gap-2 mt-1">
+      <span class="badge-offline" id="statusBadge">
+        <i class="bi bi-circle-fill me-1" style="font-size:.5rem;vertical-align:middle;"></i>offline
+      </span>
+      <button class="btn btn-sm" id="toggleBtn"
+        style="background:var(--teal);color:var(--text-main);font-size:.75rem;font-weight:700;border-radius:20px;padding:.3rem .9rem;">
+        Simulate Online
+      </button>
+    </div>
+  </div>
+
+  <!-- Body Row -->
+  <div class="row g-3">
+
+    <!-- ── LEFT COLUMN (plant + gauges + sensors) ── -->
+    <div class="col-12 col-xl-8">
+
+      <!-- Plant + Gauges Row -->
+      <div class="row g-3 mb-3">
+
+        <!-- Plant Image -->
+        <div class="col-12 col-md-5">
+          <div class="plant-card">
+            <img src="/image_data/Leaffy_Greens/lettuce.png"
+                 alt="Hydroponic Plant" />
+            <div class="plant-card-overlay">
+              <i class="bi bi-leaf-fill me-1"></i> Lettuce · Powered System
+            </div>
+          </div>
+        </div>
+
+        <!-- Gauges -->
+        <div class="col-12 col-md-7">
+          <div class="row g-3 h-100">
+            <!-- Temperature -->
+            <div class="col-4">
+              <div class="gauge-card">
+                <span class="gauge-value" id="tempVal">0 °C</span>
+                <div class="gauge-track">
+                  <div class="gauge-fill" id="tempFill" style="height:0%; background: linear-gradient(to top,#3dcfaa,#7be8cc);"></div>
+                </div>
+                <span class="gauge-label">Temp</span>
+              </div>
+            </div>
+            <!-- Humidity -->
+            <div class="col-4">
+              <div class="gauge-card">
+                <span class="gauge-value" id="humidVal">0 %</span>
+                <div class="gauge-track">
+                  <div class="gauge-fill" id="humidFill" style="height:0%; background: linear-gradient(to top,#4a9fd4,#7ed4f4);"></div>
+                </div>
+                <span class="gauge-label">Humidity</span>
+              </div>
+            </div>
+            <!-- Water Level -->
+            <div class="col-4">
+              <div class="gauge-card">
+                <span class="gauge-value" id="waterVal">0 %</span>
+                <div class="gauge-track">
+                  <div class="gauge-fill" id="waterFill" style="height:0%; background: linear-gradient(to top,#3da8cf,#7bd4ee);"></div>
+                </div>
+                <span class="gauge-label">Water</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /plant+gauges row -->
+
+      <!-- Sensor Cards -->
+      <div class="row g-2">
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-brightness-high me-1"></i>Light Intensity</div>
+            <div class="s-value"><span id="luxVal">0</span><span class="s-unit">lux</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-lightning me-1"></i>Solar Voltage</div>
+            <div class="s-value"><span id="solarVolt">0</span><span class="s-unit">V</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-activity me-1"></i>Solar Current</div>
+            <div class="s-value"><span id="solarCurr">0</span><span class="s-unit">A</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-sun me-1"></i>Solar Power</div>
+            <div class="s-value"><span id="solarPow">0</span><span class="s-unit">W</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-battery-half me-1"></i>Battery Voltage</div>
+            <div class="s-value"><span id="battVolt">0</span><span class="s-unit">V</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="sensor-card">
+            <div class="s-label"><i class="bi bi-battery-charging me-1"></i>Battery Level</div>
+            <div class="s-value"><span id="battPct">0</span><span class="s-unit">%</span></div>
+          </div>
+        </div>
+      </div><!-- /sensor cards -->
+
+    </div><!-- /left column -->
+
+    <!-- ── RIGHT COLUMN (pump & light controls) ── -->
+    <div class="col-12 col-xl-4">
+      <div class="d-flex flex-column gap-2">
+
+        <p class="section-label mb-1"><i class="bi bi-water me-1"></i>Water Pumps</p>
+
+        <button class="ctrl-btn pump" id="pump1" onclick="toggleCtrl(this,'pump')">
+          <span class="status-dot on" id="pump1-dot"></span> PUMP 01
+        </button>
+        <button class="ctrl-btn pump" id="pump2" onclick="toggleCtrl(this,'pump')">
+          <span class="status-dot on" id="pump2-dot"></span> PUMP 02
+        </button>
+        <button class="ctrl-btn pump" id="pump3" onclick="toggleCtrl(this,'pump')">
+          <span class="status-dot on" id="pump3-dot"></span> PUMP 03
+        </button>
+        <button class="ctrl-btn pump" id="pump4" onclick="toggleCtrl(this,'pump')">
+          <span class="status-dot on" id="pump4-dot"></span> PUMP 04
+        </button>
+
+        <p class="section-label mb-1 mt-2"><i class="bi bi-lightbulb-fill me-1"></i>Grow Lights</p>
+
+        <button class="ctrl-btn light-on" id="light1" onclick="toggleCtrl(this,'light')">
+          <span class="status-dot amber"></span> GROW LIGHT 01
+        </button>
+        <button class="ctrl-btn light-on" id="light2" onclick="toggleCtrl(this,'light')">
+          <span class="status-dot amber"></span> GROW LIGHT 02
+        </button>
+        <button class="ctrl-btn light-off" id="light3" onclick="toggleCtrl(this,'light')">
+          <span class="status-dot off"></span> GROW LIGHT 03
+        </button>
+        <button class="ctrl-btn light-off" id="light4" onclick="toggleCtrl(this,'light')">
+          <span class="status-dot off"></span> GROW LIGHT 04
+        </button>
+
+      </div>
+    </div><!-- /right column -->
+
+  </div><!-- /body row -->
+</div><!-- /main -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ── Toggle pump / light buttons ──
+  function toggleCtrl(btn, type) {
+    const dot = btn.querySelector('.status-dot');
+    if (type === 'pump') {
+      if (btn.classList.contains('off')) {
+        btn.classList.remove('off');
+        dot.classList.replace('off','on');
+      } else {
+        btn.classList.add('off');
+        dot.classList.replace('on','off');
+      }
+    } else {
+      if (btn.classList.contains('light-on')) {
+        btn.classList.replace('light-on','light-off');
+        dot.className = 'status-dot off';
+      } else {
+        btn.classList.replace('light-off','light-on');
+        dot.className = 'status-dot amber';
+      }
+    }
+  }
+
+  // ── Simulate Online / Offline ──
+  let isOnline = false;
+  let simInterval = null;
+
+  document.getElementById('toggleBtn').addEventListener('click', function () {
+    isOnline = !isOnline;
+    const badge = document.getElementById('statusBadge');
+    if (isOnline) {
+      badge.className = 'badge-online';
+      badge.innerHTML = '<i class="bi bi-circle-fill me-1" style="font-size:.5rem;vertical-align:middle;"></i>online';
+      this.textContent = 'Go Offline';
+      startSimulation();
+    } else {
+      badge.className = 'badge-offline';
+      badge.innerHTML = '<i class="bi bi-circle-fill me-1" style="font-size:.5rem;vertical-align:middle;"></i>offline';
+      this.textContent = 'Simulate Online';
+      stopSimulation();
+    }
+  });
+
+  function rnd(min, max, dec = 1) {
+    return +(Math.random() * (max - min) + min).toFixed(dec);
+  }
+
+  function updateGauge(fillId, valId, value, max, unit) {
+    const pct = Math.min(100, (value / max) * 100);
+    document.getElementById(fillId).style.height = pct + '%';
+    document.getElementById(valId).textContent = value + ' ' + unit;
+  }
+
+  function startSimulation() {
+    updateAll();
+    simInterval = setInterval(updateAll, 2500);
+  }
+
+  function stopSimulation() {
+    clearInterval(simInterval);
+    // Zero out gauges
+    ['tempFill','humidFill','waterFill'].forEach(id =>
+      document.getElementById(id).style.height = '%');
+    ['tempVal','humidVal','waterVal'].forEach((id, i) =>
+      document.getElementById(id).textContent = '0 ' + ['°C','%','%'][i]);
+    ['luxVal','solarVolt','solarCurr','solarPow','battVolt','battPct'].forEach(id =>
+      document.getElementById(id).textContent = '0');
+  }
+
+  function updateAll() {
+    const temp  = rnd(20, 35);
+    const humid = rnd(40, 90);
+    const water = rnd(30, 95);
+
+    updateGauge('tempFill',  'tempVal',  temp,  50, '°C');
+    updateGauge('humidFill', 'humidVal', humid, 100, '%');
+    updateGauge('waterFill', 'waterVal', water, 100, '%');
+
+    document.getElementById('luxVal').textContent    = rnd(3000, 9000, 0);
+    document.getElementById('solarVolt').textContent = rnd(11, 14.5);
+    document.getElementById('solarCurr').textContent = rnd(0.5, 5.5);
+    document.getElementById('solarPow').textContent  = rnd(5, 75);
+    document.getElementById('battVolt').textContent  = rnd(11.5, 13.2);
+    document.getElementById('battPct').textContent   = rnd(40, 98, 0);
+  }
+</script>
+</body>
+</html>

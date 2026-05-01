@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Hydroponics Dashboard</title>
+  <title>Dashboard > Settings</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -34,7 +34,7 @@
         <div class="navigations">
             <a href="index.html" class="sidebar-icon" title="Dashboard"><i class="bi bi-grid-fill"></i></a>
             <a href="settings.html" class="sidebar-icon active" title="Settings"><i class="bi bi-sliders"></i></a>
-            <a href="analytics" class="sidebar-icon" title="Analytics"><i class="bi bi-bar-chart-fill"></i></a>
+            <a href="analytics.html" class="sidebar-icon" title="Analytics"><i class="bi bi-bar-chart-fill"></i></a>
             <a href="solar.html" class="sidebar-icon" title="Solar"><i class="fa-solid fa-solar-panel"></i></a>
         </div>
         <div class="power-logo">
@@ -438,7 +438,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center p-5">
                         <!--Logo & Title-->
                         <div class="d-flex gap-3">
-                            <div class="container bg-secondary bd-highlight p-3 border rounded-2">
+                            <div class="bg-secondary bd-highlight p-3 border rounded-2">
                                 <img src="/asset/ico/ph-indicator.png" alt="ph-sensor-logo" height="50" style="width:auto;">
                             </div>
                             <h3 class="font-arial-semibold">ph Sensor Calibration</h3>
@@ -454,8 +454,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="container border border-dark border-2 p-2 bg-light rounded-3"></div>
-                <div class="container border border-dark border-2 p-2 bg-light rounded-3"></div>
+                <div class="container border border-dark border-2 p-2 bg-light rounded-3">
+                    <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                        <!--Logo & Title-->
+                        <div class="d-flex gap-3">
+                            <div class="bg-secondary bd-highlight p-3 border rounded-2">
+                                <img src="/asset/ico/temp-indicator.png" alt="ph-sensor-logo" height="50" style="width:auto;">
+                            </div>
+                            <h3 class="font-arial-semibold">Temperature Calibration</h3>
+                        </div>
+
+                        <!--Level Indicator-->
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+                            <h1 class="font-digital-indicator display-1 pt-5 pb-5" id="tempVal">0 C</h1>
+                        </div>
+                        <!--Calibrate Button-->
+                        <div class="w-100 d-flex justify-content-center align-items-center">
+                                <button type="button" class="btn btn-outline-primary display-2 text-dark border border-primary border-2 rounded-3 w-100" style="font-weight: bold;">Calibrate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container border border-dark border-2 p-2 bg-light rounded-3">
+                    <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                        <!--Logo & Title-->
+                        <div class="d-flex gap-3">
+                            <div class="bg-secondary bd-highlight p-3 border rounded-2">
+                                <img src="/asset/ico/water-level-indicator.png" alt="ph-sensor-logo" height="50" style="width:auto;">
+                            </div>
+                            <h3 class="font-arial-semibold">Water Level Calibration</h3>
+                        </div>
+
+                        <!--Level Indicator-->
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+                            <h1 class="font-digital-indicator display-1 pt-5 pb-5" id="waterVal">0%</h1>
+                        </div>
+                        <!--Calibrate Button-->
+                        <div class="w-100 d-flex justify-content-center align-items-center">
+                                <button type="button" class="btn btn-outline-primary display-2 text-dark border border-primary border-2 rounded-3 w-100" style="font-weight: bold;">Calibrate</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

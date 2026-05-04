@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard > Settings</title>
+  <title>Solar Syetem</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -41,8 +41,47 @@
             <div class="sidebar-icon mt-auto" title="Solar"><i class="bi bi-lightning-charge-fill"></i></div>
         </div>
     </nav>
-<body>
-    
+<body class="main">
+    <!--Title-->
+    <h1 class="dash-title p-2">Solar Panel & Charging System</h1>
+
+    <div class="drawer-main-container d-flex flex-column justify-content-center align-items-center p-4 gap-4">
+        <!-- Solar Panels -->
+        <div class="content-container d-flex flex-column p-2">
+            <!-- Title -->
+            <h2 class="font-arial-semibold text-white p-3">Solar Panel</h2>
+
+            <!-- indicator & icons -->
+            <div class="container-fluid d-flex justify-content-evenly align-items-center">
+                <h1 class="font-digital-indicator text-light" style="font-size: 120px;">0.0 v</h1>
+                <img src="/SolarHydroponicSystem.app/asset/ico/Icons/Solar-icons/SolarPanel.png" alt="Solar Indicator">
+            </div>
+        </div>
+
+        <!-- Solar Battery -->
+        <div class="content-container d-flex flex-column p-2">
+            <!-- Title -->
+            <h2 class="font-arial-semibold text-light p-3">Battery</h2>
+
+            <!-- indiator & icons -->
+            <div class="container-fluid d-flex justify-content-evenly align-items-center">
+                <h1 class="font-digital-indicator text-light" style="font-size: 120px;">0 %</h1>
+                <img src="/SolarHydroponicSystem.app/asset/ico/Icons/Solar-Battery-icons/Full-Charge.png" alt="Solar Battery Indicator">
+            </div>
+        </div>
+
+        <!-- Solar Powers -->
+        <div class="content-container d-flex flex-column p-2">
+            <!-- Title -->
+            <h2 class="font-arial-semibold text-light p-3">Solar Power</h2>
+
+            <!-- indicator & icons -->
+            <div class="container-fluid d-flex justify-content-evenly align-items-center">
+                <h1 class="font-digital-indicator text-light" style="font-size: 120px;">0 w</h1>
+                <img src="/SolarHydroponicSystem.app/asset/ico/Icons/electricity-icons/Electricity.png" alt="Electricity">
+            </div>
+        </div>
+    </div>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="asset/js/pageLoader.js"></script>
